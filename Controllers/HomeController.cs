@@ -13,17 +13,18 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+    public IActionResult Index() => View();
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+    public IActionResult Privacy() => View();
+
+    public string TesteQueryString([FromQuery]string q, [FromQuery]string nome) => $"Chegou aqui {q} e {nome}";
+
+    [HttpPost]
+    public IActionResult TesteForm([FromForm] UserRequest userRequest) => View(userRequest);
 
     public string PrimeiraAction() => "Minha primeira action";
+
+    public IActionResult Form() => View();
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
